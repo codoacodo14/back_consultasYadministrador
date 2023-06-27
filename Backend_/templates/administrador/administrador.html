@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block styles %}
+<link rel="stylesheet" href="/static/css/library-style.css">
+{% endblock %}
+{% block content %}
+
+<form method="post">
+    <input type="text" name="autor" placeholder="Autor">
+    <input type="text" name="titulo" placeholder="Título">
+    <input type="text" name="editorial" placeholder="Editorial">
+    <input type="text" name="lugar_edicion" placeholder="Lugar de Edición">
+    <input type="text" name="fecha_edicion" placeholder="Fecha de Edición">
+    <input type="text" name="area" placeholder="Área">
+    <button type="submit">Guardar</button>
+</form>
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/events.js"></script>
+{% endblock %}

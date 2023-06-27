@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block styles %}
+<link rel="stylesheet" href="/static/css/library-style.css">
+{% endblock %}
+{% block content %}
+
+<main class="container">
+  <section class="item Left">
+    <aside>
+      <h2>¿Qué vas a encontrar?</h2>
+
+
+      <ul style="list-style: none">
+        <li>Hemeroteca</li>
+        <li>Pinacoteca</li>
+        <li>Sala de Informática</li>
+        <li>Taller de Pintura</li>
+        <li>Taller Literario</li>
+        <li>Grupo Cortazariano</li>
+        <li>Grupo Borgeano</li>
+        <li>Sábato y su pensamiento</li>
+      </ul>
+      <img src="/static/img/cabeza.jpg" alt="" height="180px" width="200px">
+    </aside>
+  </section>
+  <section class="item Main">
+    <article class="freedom">
+
+      <h2>LEER NOS HACE LIBRES</h2>
+
+      <br><br>
+      <img src="/static/img/group_library.jpg" alt="imagen grupo en biblioteca" height="400px">
+      <br><br>
+      <p>En nuestra biblioteca encontrarán un espacio para imaginar, estudiar y crecer junto a nuestra gran
+        cantidad de volúmenes de todos los géneros y tiempos.
+        No dudes en acercarte y disfrutar de un espacio confortable y tranquilo para empaparte de cultura y
+        humanidad.
+      </p>
+
+
+
+      <!-- <a href="https://www.bn.gov.ar/" class="button">Click para acceder a la Biblioteca</a> -->
+      <a href="/consultas" class="button">Click para acceder a la Biblioteca</a>
+      <a href="/administrador" class="button">Sólo para el Administrador</a>
+    </article>
+  </section>
+  <section class="item Right">
+    <aside class="aside-right">
+
+      <h2>Conociéndolos</h2>
+      <p>Cortázar</p>
+      <iframe src="https://www.youtube.com/embed/7Pw4EaPw4ao"
+        title="Julio Cortázar: &quot;Borges me dio una lección sobre la escritura&quot; ❤️📚" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <p>Borges</p>
+      <iframe src="https://www.youtube.com/embed/D8BBY_kGFPY"
+        title="Borges por Borges: así pensaba y hablaba el mayor autor argentino" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <p>Sábato</p>
+      <iframe src="https://www.youtube.com/embed/fd7p1O8nHEE"
+        title="Hombre íntegro vs hombre-engranaje (Sabato en 1977)" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+
+    </aside>
+  </section>
+</main>
+
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/events.js"></script>
+{% endblock %}
