@@ -1,1 +1,1 @@
-web: gunicorn nombre-de-tu-app:nombre-de-tu-app
+web: gunicorn nombre-de-tu-app:api-codoacodo
