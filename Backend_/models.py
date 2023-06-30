@@ -1,72 +1,60 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+import bcrypt
 
-
-class Libros(db.Model):
+class Books(db.Model):
     id = db.Column(db.Integer, nullable=False, primary_key=True)
-    autor = db.Column(db.String(200), nullable=False)
-    titulo = db.Column(db.String(200), nullable=False)
+    author = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
     editorial = db.Column(db.String(100), nullable=False)
-    fecha_edicion = db.Column(db.Integer)
-    lugar_edicion = db.Column(db.String(100))
+    availability = db.Column(db.String(100), nullable=False)
     area = db.Column(db.String(50), nullable=False)
+    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'))
+    admin = db.relationship('Admins', backref='books')
 
-    def __init__(self, autor, titulo, editorial, fecha_edicion, lugar_edicion, area):
+    def __init__(self, author, title, editorial,area, availability):
         super().__init__()
-        self.autor = autor
-        self.titulo = titulo
+        self.author = author
+        self.title = title
         self.editorial = editorial
-        self.fecha_edicion = fecha_edicion
-        self.lugar_edicion = lugar_edicion
+        self.availability = availability
         self.area = area
 
     def __str__(self):
-        return "\nAutor: {}. Titulo: {}. Editorial: {}. Fecha de Edición: {}. Lugar de Edición: {}. Área: {}\n".format(
-            self.autor,
-            self.titulo,
+        return "\nAutor: {}. Titulo: {}. Editorial: {}. Disponibilidad: {}. Área: {}\n".format(
+            self.author,
+            self.title,
             self.editorial,
-            self.fecha_edicion,
-            self.lugar_edicion,
+            self.availability,
             self.area
+        )
+    
+class Admins(db.Model):
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
+
+    def set_password(self, password):
+        password_bytes = password.encode('utf-8')
+        self.password_hash = bcrypt.hashpw(password_bytes, bcrypt.gensalt()).decode('utf-8')
+
+    def check_password(self, password):
+        password_bytes = password.encode('utf-8')
+        return bcrypt.checkpw(password_bytes, self.password_hash.encode('utf-8'))
+        
+
+    def __init__(self, name, password_hash=''):
+        super().__init__()
+        self.name = name
+        self.password_hash = password_hash
+        
+
+    def __str__(self):
+        return "\nName: {}. Password_hash: {}\n".format(
+            self.name,
+            self.password_hash,
+            
         )
 
 
-"""     def serialize(self):
-        return {
-            "id" : self.id,
-            "autor" : self.autor,
-            "titulo" : self.titulo,
-            "editorial" : self.editorial,
-            "fecha_edicion": self.fecha_edicion,
-            "lugar_edicion": self.lugar_edicion,
-            "area": self.area
-        }
- """
-
-""" class Libros(db.Model):
-    id = db.Column(db.Integer, nullable= False, primary_key=True)
-    isbn = db.Column(db.String(20))
-    tipo_texto=db.Column(db.String(30))
-    titulo = db.Column(db.String(200), nullable=False)
-    autor = db.Column(db.String(200), nullable=False)
-    editorial = db.Column(db.String(200), nullable=False)
-    fecha_edicion = db.Column(db.Integer)
-    lugar_edicion = db.Column(db.String(100))
-    materia = db.Column(db.String(200), nullable=False)
-    fecha_alta = db.Column(db.String(10))
-    estantes = db.Column(db.String(10))
-
-    def __init__(self, id, isbn, tipo_texto,titulo, autor, editorial, fecha_edicion, lugar_edicion, materia, fecha_alta,estantes):
-        super().__init__()
-        self.id = id
-        self.isbn = isbn
-        self.tipo_texto = tipo_texto
-        self.titulo = titulo
-        self.autor = autor
-        self.editorial = editorial
-        self.fecha_edicion = fecha_edicion
-        self.lugar_edicion = lugar_edicion
-        self.materia = materia
-        self.fecha_alta = fecha_alta
-        self.estantes= estantes """
